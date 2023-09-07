@@ -1,1 +1,1 @@
-# DigitaSensorQuery
+# DigitalSensorQuery
