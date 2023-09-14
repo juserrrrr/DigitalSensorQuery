@@ -36,7 +36,6 @@ simulation/
 *.summary
 *.pin
 *.qdz
-*.qsf
 *.qws
 *.srf
 *.vro
@@ -110,7 +109,6 @@ simulation/
 *.done
 *.summary
 *.vqm
-*.qpf
 *.vhd
 *.sv
 *.svh
