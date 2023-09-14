@@ -50,7 +50,6 @@ simulation/
 *.bsf
 *.sopc
 *.jdi
-*.done
 *.msf
 *.smsg
 *.pin
@@ -77,7 +76,6 @@ simulation/
 *.vhd
 *.sv
 *.svh
-*.v
 *.vho
 *.vo
 *.vivado
@@ -88,41 +86,5 @@ simulation/
 *.wlf
 *.txt
 *.wlf
-*.bak
-*~
 *.swp
 
-# Ignora arquivos de compilação
-*.qws/
-*.qdb/
-*.qqd/
-*.qdz/
-*.sopc/
-*.jdi
-*.jic
-*.map
-*.sopcinfo
-*.done
-*.msf
-*.smsg
-*.pin
-*.done
-*.summary
-*.vqm
-*.vhd
-*.sv
-*.svh
-*.v
-*.vho
-*.vo
-*.vivado
-*.qdf
-*.svdo
-*.vo
-*.vivado
-*.wlf
-*.txt
-*.wlf
-*.bak
-*~
-*.swp
