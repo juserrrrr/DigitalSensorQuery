@@ -81,7 +81,6 @@ module dht(
 			IDLE: begin//Se estado for START
 				error <= 0;
 				done <= 0;
-				errorSensor <=0;
 				if (start_bit ==1) begin
 					temp_data = 0; //temp_data resetado
 					index = 0; //index resetado
