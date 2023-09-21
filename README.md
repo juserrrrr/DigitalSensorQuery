@@ -35,7 +35,7 @@ As etapas que foram seguidas em ordem cronológica, foram:
    4. Ajuste de erros e testagem
 ## Descrição do Projeto:
    - Diagrama em alto nível - Thiago
-   ![Minha Imagem](public/img/Diagrama em Alto Nível.jpg)
+   ![Minha Imagem](public/img/Diagrama_alto_nivel.jpg)
    - C - Mendes
    - UART - Zé
    - DHT11 - Thiago
