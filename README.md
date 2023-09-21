@@ -11,17 +11,17 @@
 
 # Projeto
 
-## Introdução
+## Introdução - Guilherme
 
-## Como usar - Zé
+## Manual do Usuário - Zé
 
 ## Metodologia - Thiago
 
 ## Descrição do Projeto:
-   - Diagrama em alto nível
+   - Diagrama em alto nível - Thiago
    - C - Mendes
    - UART - Zé
    - DHT11 - Thiago
    - STEPPER - Mendes
 
-## Conclusão
+## Conclusão - Guilherme
