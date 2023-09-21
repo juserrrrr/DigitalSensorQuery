@@ -9,7 +9,7 @@
 ## Metodologia
 
 Para desenvolvimento do sistema proposto, foram estipuladas quais seriam as ferramentas utilizadas e quais as etapas a serem seguidas. 
-A nível de organização, o projeto foi dividido em partes (módulos), a fim de facilitar a manutenção, escalabilidade, testabilidade entendimento e documentação.
+A nível de organização, o projeto foi dividido em partes (módulos), a fim de facilitar a manutenção, escalabilidade, testabilidade, entendimento e documentação.
 
 As ferramentas utilizadas no desenvolvimento do projeto foram:
    - FPGA CYCLONE IV
