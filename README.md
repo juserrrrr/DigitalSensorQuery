@@ -1,14 +1,5 @@
 # DigitalSensorQuery
 
-
-
-## Autores
-
-- José Gabriel de Almeida Pontes
-- Luis Guilherme Nunes Lima
-- Pedro Mendes
-- Thiago Pinto Pereira Sena
-
 # Projeto
 
 ## Introdução - Guilherme
@@ -25,3 +16,10 @@
    - STEPPER - Mendes
 
 ## Conclusão - Guilherme
+
+## Autores
+
+- José Gabriel de Almeida Pontes
+- Luis Guilherme Nunes Lima
+- Pedro Mendes
+- Thiago Pinto Pereira Sena
