@@ -4,7 +4,7 @@
 
 ## Introdução - Guilherme
 
-## Descrição e análise - Zé
+## Descrição e análise dos testes
 
 Durante o processo de teste, o projeto enfrentou diversos desafios, os quais foram essenciais para aprimorá-lo. Esses testes incluíram simulações no próximo Quartus, abrangendo aspectos como o DHT e a UART. No entanto, o verdadeiro teste de fogo para o funcionamento do projeto veio com os testes reais.
 
@@ -61,7 +61,7 @@ Por fim, a UART transmite serialmente para o computador os bits contendo o valor
 
 ### C - Mendes
 
-### UART - Zé
+### UART
 
 A UART, ou Universal Asynchronous Receiver/Transmitter, é um componente vital na comunicação entre dispositivos microcontroladores. Ela permite a transmissão e recepção de dados de forma assíncrona, sem a necessidade de um sinal de clock compartilhado entre os dispositivos.
 
