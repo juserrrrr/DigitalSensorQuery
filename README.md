@@ -10,7 +10,10 @@
 
 ## Descrição do Projeto:
    - Diagrama em alto nível - Thiago
-   - C - Mendes
+   ### C - Mendes
+   A comunicação do computador com a FPGA é feita através de um cabo serial, utilizando o protocolo UART que será detalhado na próxima seção. Essa comunicação é controlada por dois códigos em C salvos em arquivos distintos, o "read_uart.c" e o "write_uart.c"
+   #### Read_uart.c
+   
    - UART - Zé
    - DHT11 - Thiago
    - STEPPER - Mendes
