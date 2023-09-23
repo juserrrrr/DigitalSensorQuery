@@ -50,7 +50,9 @@ As etapas que foram seguidas em ordem cronológica, foram:
    Por fim, a UART transmite serialmente para o computador os bits contendo o valor obitido da temperatura/umidade, juntamente com o endereço do sensor requisitado e o comando de resposta.  
    ### C - Mendes
    ### UART - Zé
-   ### DHT11 - Thiago
+   ### DHT11
+   
+   
    ### STEPPER - Mendes
 
 ## Conclusão - Guilherme
