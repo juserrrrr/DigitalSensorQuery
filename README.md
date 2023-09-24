@@ -1,7 +1,4 @@
 # DigitalSensorQuery
-
-# Projeto
-
 ## Introdução - Guilherme
 
 ## Metodologia
