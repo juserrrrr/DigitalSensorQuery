@@ -14,7 +14,7 @@ A nível de organização, o projeto foi dividido em partes (módulos), a fim de
 As ferramentas utilizadas no desenvolvimento do projeto foram:
    - FPGA CYCLONE IV
    - Sensor(es) DHT11
-   - Software Quartus II
+   - Software Quartus
    - Editor de Texto para escrita do código em C e Terminal Linux para compilar e executar o código
    - Software Creately para modelagem do sistema e máquinas de estados
 
@@ -28,7 +28,7 @@ As etapas que foram seguidas em ordem cronológica, foram:
       1. Estudo do funcionamento do DHT11 por meio da leitura do seu datasheet
       2. Desenvolvimento da máquina de estados em Verilog capaz de acionar o sensor e coletar a temperatura e a umidade
       3. Para funcionamento desta máquina, foram desenvolvidos:
-         1. Um módulo Trie State para controle do fluxo de dados entre a FPGA e o sensor (Ora a FPGA manda sinal, ora o sensor manda sinal)
+         1. Um módulo Tri State para controle do fluxo de dados entre a FPGA e o sensor (Ora a FPGA manda sinal, ora o sensor manda sinal)
          2. Um módulo de geração de Clock com periódo de 1 microssegundo, já que o tempo das respostas do sensor é baseado em microssegundos
    3. Unidade de Controle - Stepper
       1. Modelagem do módulo
@@ -52,6 +52,7 @@ As etapas que foram seguidas em ordem cronológica, foram:
    ### UART - Zé
    ### DHT11
    
+  
    
    ### STEPPER - Mendes
 
