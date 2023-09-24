@@ -51,7 +51,7 @@ As etapas que foram seguidas em ordem cronológica, foram:
    ### C - Mendes
    ### UART - Zé
    ### DHT11
-   
+   Para desenvolvimento da máquina de estados responsável pela comunicação com os sensosres DHT11, foi feita a leitura do datasheet que pode ser acessado nesse link: [Datasheet DHT11](public/DHT11-Technical-Data-Sheet.pdf). 
   
    
    ### STEPPER - Mendes
