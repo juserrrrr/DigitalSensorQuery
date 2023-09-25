@@ -1,5 +1,7 @@
+
 # DigitalSensorQuery
 ## Introdução - Guilherme
+
 
 ## Metodologia
 
@@ -29,8 +31,7 @@ As etapas que foram seguidas em ordem cronológica, foram:
       1. Modelagem do módulo
       2. Desenvolvimento da máquina de estados em Verilog
    4. Ajuste de erros e testagem
-
-
+      
 ## Descrição do Projeto:
 
    ### Diagrama em alto nível
@@ -68,6 +69,7 @@ Durante o processo de teste, o projeto enfrentou diversos desafios, os quais for
 Estes últimos foram conduzidos com o objetivo de avaliar praticamente cada módulo de forma independente. Por exemplo, o sensor DHT11 foi integrado a um único botão com pulso para minimizar ruídos. Em seguida, utilizando um osciloscópio, foi verificado se o sensor realmente respondeu corretamente, observando as ondas geradas.
 
 Ao final, foi realizado um teste completo do projeto em conjunto para validar se as respostas estavam de acordo com as expectativas iniciais. Essa validação foi feita através do código C, que foi elaborado especificamente para receber e enviar dados pela UART via porta serial. Por sua vez, o código C foi criado e testado em conjunto com o módulo UART, como forma de observar se os dados mandados pela FPGA, assim como os recebidos, estavam de acordo com os valores passados manualmente.
+
 
 ## Conclusão - Guilherme
 
