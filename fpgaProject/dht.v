@@ -81,7 +81,6 @@ module dht(
 			IDLE: begin//Se estado for START
 				error <= 0;
 				done <= 0;
-				errorSensor <= 0;
 				if (start_bit ==1) begin
 					temp_data = 0; //temp_data resetado
 					index = 0; //index resetado
@@ -162,23 +161,17 @@ module dht(
 			end
 			
 			DETECT_BIT: begin//Se estado for DETECT_BIT (detecção se o bit é 0 ou 1) // 7
-				if(read[sensorIndex] == 1 && counter < 100) begin //enquanto a leitura do sinal for 1
+				if(read[sensorIndex] == 1) begin //enquanto a leitura do sinal for 1
 					counter <= counter + 1;
 				end else begin
-					if (counter > 99) begin
-						error <= 1;
-						state <= WAIT_SIGNAL;
-					end else if(counter > 50) begin //se a contagem do tempo extrapolou 50us(Meio a meio do limite 30 ~ 70us) 
+					if(counter > 50) begin //se a contagem do tempo extrapolou 50us(Meio a meio do limite 30 ~ 70us) 
 						temp_data[39-index] <= 1; //bit 1
-						state <= TRANSMIT; //volta para transmit
-						index <= index + 1; //incrementa em 1 o index
 					end else begin //senão
 						temp_data[39-index] <= 0; //bit 0
-						state <= TRANSMIT; //volta para transmit
-						index <= index + 1; //incrementa em 1 o index
 					end
 					counter <= 0; //reseta contador
-					
+					index <= index + 1; //incrementa em 1 o index
+					state <= TRANSMIT; //volta para transmit
 				end
 			end
 			WAIT_SIGNAL: begin// Tempo para aguardar livramento do sinal pelo dht11 // 8

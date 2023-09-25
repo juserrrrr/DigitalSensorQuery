@@ -1,11 +1,10 @@
 module stepper(baudRate, serialFromPc, serialToPc, clkMicroSec, sensor, 
-clk, led);
+clk);
 
 input baudRate;
 input serialFromPc;
 input clkMicroSec; // 1 pulso = 1 microssegundo
 input clk; // 50mhz
-output reg [2:0] led;
 
 reg clearUart; // essa variavel limpa o comando atual da uart, é utilizada sempre que um comando é lido
 
@@ -106,12 +105,6 @@ pulseSensorToTransmit(
 	.pulseFinal(timeToSendUart)
 );
 
-pulseSensorToTransmit(
-	.clk(clkMicroSec), 
-	.pulseInitial(dhtError), 
-	.pulseFinal(dhtErrorPulse)
-);
-
 
 // parametros para os estados
 localparam[2:0]
@@ -137,12 +130,7 @@ localparam[2:0]
 initial begin 
 
 	state <= sendingConstTemp;
-	led <= 0;
 	
-end
-
-always @(posedge state) begin
-	led <= ~state;
 end
 	
 always @(posedge baudRate) begin
@@ -286,7 +274,7 @@ always @(posedge baudRate) begin
 					end else if (chosenInfo == sendStatus) begin
 						
 						// necessario atualizar o comando de resposta apos dht, caso comando = sendStatus
-						if (dhtErrorPulse == 1)
+						if (dhtError == 1)
 							commandToPc <= 8'h1F; // sensor com problema
 						else
 							commandToPc <= 8'h07; // sensor ok
@@ -299,12 +287,7 @@ always @(posedge baudRate) begin
 					state <= activateUart;
 					resetCounter <= 1; // reseta o counter
 					
-				end else if (counter > 500) begin
-					state <= sendingConstTemp;
-					resetCounter <= 1; // reseta o counter
 				end
-
-				
 				
 							
 			end
@@ -321,7 +304,7 @@ always @(posedge baudRate) begin
 				end else if (counter == 8) // tempo para garantir que a uart recebeu o sinal de start
 					startSendUart <= 0; 
 					
-				else if (counter > 19200) begin// espera 2 segundos (19200 na baud rate) para prosseguir, necessario por conta do dht11
+				else if (counter == 19200) begin// espera 2 segundos (19200 na baud rate) para prosseguir, necessario por conta do dht11
 					
 					if (chosenInfo == sendTemp || chosenInfo == sendHum || chosenInfo == noValue) // volta para o comeco, pois veio do gettingNewCommand
 						state <= sendingConstTemp;

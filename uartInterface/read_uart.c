@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <fcntl.h> // para utilizar as configurações de abrir arquivo, no caso a porta
+#include <fcntl.h>
 #include <stdlib.h>
 #include <math.h>
 #include <termios.h>
@@ -231,8 +231,7 @@ void hexToBinString(char c, char binary[]){
 // a solução escolhida foi dividir as 70 medidas de umidade possíveis em 2;
 // sendo assim, cada valor recebido pela medida de umidade deve ser multiplicado por 2
 // e somado ao 20 inicial
-/*
-void proccessRawAddressCommand(char rawBinAddress[9], char rawBinCommand[9], //FUNCAO NAO UTILIZADA
+void proccessRawAddressCommand(char rawBinAddress[9], char rawBinCommand[9], //FUNCAO AINDA NAO UTILIZADA
     char address[9], char command[9], char measuredValue[9]){
     
     address[0] = rawBinAddress[0];
@@ -254,7 +253,7 @@ void proccessRawAddressCommand(char rawBinAddress[9], char rawBinCommand[9], //F
     measuredValue[4] = rawBinCommand[5];
     measuredValue[5] = rawBinCommand[6];
     measuredValue[6] = rawBinCommand[7];
-} */
+}
 
 
 int main(){
@@ -270,17 +269,36 @@ int main(){
         perror("Error opening file");
         return -1;
     }
+    
+    /*
+    speed_t spd = B9600;
+    cfsetospeed(&options, (speed_t)spd);
+    cfsetispeed(&options, (speed_t)spd);
+
+    //cfmakeraw(&options);
+
+    options.c_cc[VMIN] = 1;
+    options.c_cc[VTIME] = 10;
+
+    options.c_cflag &= ~CSTOPB;
+    options.c_cflag &= ~CRTSCTS;    /* no HW flow control? 
+    options.c_cflag |= CLOCAL | CREAD;
+    tcsetattr(fd, TCSANOW, &options); */
 
     
+    //options.c_cc[VMIN] = 1;
+	//options.c_cc[VTIME] = 5;
     //options.c_cflag = "character control"
     //options.c_oflag = "output control"
     //options.c_lflag = "line control"
     options.c_cflag = B9600 | CS8 | CLOCAL | CREAD;
     options.c_cflag &= ~CRTSCTS;
+    //options.c_cflag &= ~CRTSCTS;
     //B9600 é o Baud Rate
     //CS8 indica que cada caractere enviado ou recebido terá 8 bits
     //CLOCAL desativa a detecção de linha de controle, que só permite que a comunicação inicie se o dispositivo estiver "online" e pronto para comuunicação
     //CREAD ativa a leitura de dados da porta serial
+    //cfmakeraw(&options);
 	options.c_oflag = 0; //Configura para que a sáida seja simples sem caracteres como \t ou \r
 	options.c_lflag = 0; //Configura para que a sáida seja simples sem caracteres como \n ou \b
 	
@@ -338,9 +356,9 @@ int main(){
 		
 		//Leitura dos 3 Bytes
         len1 = read(fd, &rawAddress, 1);
-
+        //sleep(0.1);
         len2 = read(fd, &rawCommand, 1);
-
+        //sleep(0.1);
         len3 = read(fd, &rawValue, 1);
 
         if (len1+len2+len3 < 3){
@@ -367,6 +385,16 @@ int main(){
         hexToBinString(rawAddress, rawBinaryAddress);
         hexToBinString(rawCommand, rawBinaryCommand);
         hexToBinString(rawValue, rawBinaryValue);
+
+        
+        //proccessRawAddressCommand(rawBinaryAddress, rawBinaryCommand, address, command, measuredValue);
+	
+	/*
+        if (binToInt(command) != 8 && binToInt(command) != 9){
+            strcpy(address, rawBinaryAddress);
+            strcpy(command, rawBinaryCommand);
+        } */
+
         
         //Printa os valores inteiros de endereço, comando e valor
         printf("\nInt Address: %d\n", binToInt(rawBinaryAddress));
