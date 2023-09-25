@@ -1,7 +1,9 @@
 
 # DigitalSensorQuery
 ## Introdução
-Com o crescimento do mercado de Internet das coisas (IOT), uma empresa visando entrar no ramo decidiu solicitar aos alunos de Engenharia da Computação da UEFS que desenvolvessem um protótipo de um sensor digital para monitoramento de ambientes. De começo o protótipo tem como objetivo a possível comunicação de forma serial entre dispositivos, logo para atender a esses requisitos foi-se necessário a utilização de um protocolo de comunicação serial conhecido como UART. O objetivo deste protótipo é fazer-se possível o monitoramento de até 32 sensores DHT11, que medem temperatura e umidade do ambiente. Com isso iremos mostrar a metodologia utilizada para a realização deste protótipo.
+Com o crescimento do mercado de Internet das coisas (IOT), uma empresa, visando entrar no ramo, decidiu solicitar aos alunos de Engenharia da Computação da UEFS que desenvolvessem um protótipo de um sensor digital para monitoramento de ambientes. A princípio, o protótipo tem como objetivo a comunicação de forma serial entre o computador, uma placa FPGA e um ou mais sensores de temperatura e umidade. Logo para atender a esses requisitos foi-se necessário a utilização de um protocolo de comunicação serial conhecido como UART. 
+
+O objetivo deste protótipo é fazer-se possível o monitoramento de até 32 sensores DHT11, que medem temperatura e umidade do ambiente. Com isso iremos mostrar a metodologia utilizada para a realização deste protótipo.
 
 ## Metodologia
 
@@ -137,7 +139,7 @@ Ao final, foi realizado um teste completo do projeto em conjunto para validar se
 
 ## Conclusão
 
-Conclui-se que o projeto atendeu a todos os seus requisitos, tendo em vista que o objetivo principal do projeto é a comunicação entre os dispositivos por meio da utilização do protocolo UART visto anteriormente, o monitoramento de até 32 sensores e a exibição das informações por meio de um programa na linguagem C. No entanto algumas melhorias são sugeridas, mas nada que esteja impedindo de funcionar, no entanto o projeto ainda apresenta algumas faltas de otimização de tempo no quesito de resposta dos sensores e simplificar mais o código criando mais módulos, porém menores e de fácil entendimento.
+Conclui-se que o projeto atendeu a todos os seus requisitos, tendo em vista que o objetivo principal do projeto é a comunicação entre os dispositivos por meio da utilização do protocolo UART visto anteriormente, o monitoramento de até 32 sensores e a exibição das informações por meio de um programa escrito na linguagem C. No entanto algumas melhorias são sugeridas, no que diz respeito a otimização de tempo de resposta dos sensores e no que tange à simplificação do código, desenvolvendo mais módulos, porém menores e de fácil entendimento.
 
 ## Autores
 
