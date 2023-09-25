@@ -127,7 +127,7 @@ Os comandos recebidos são lidos e interpretados, seguindo a seguinte tabela:
    - ActivateDht: aqui a máquina do DHT11 recebe um bit de início, o estado espera até que ela envie o bit de término, para então ir para o próximo estado.
    - ActivateUart: aqui a máquina da UART é ativada para enviar o comando de resposta, além do endereço do sensor requisitado e o valor pedido. Nesse estado existe um contador de 2 segundos, pois a máquina do DHT11 precisa desse tempo para receber um novo comando.
 
-## Descrição e análise dos testes
+## Resultados e análise dos testes
 
 Durante o processo de teste, o projeto enfrentou diversos desafios, os quais foram essenciais para aprimorá-lo. Esses testes incluíram simulações no próprio Quartus, abrangendo aspectos dos módulos como o DHT e a UART. No entanto, para além das simulções no software, algumas outras simulações foram realizadas com auxílio de oscilosópio e das interfaces da própria placa FPGA.
 
@@ -136,6 +136,12 @@ Estes últimos foram conduzidos com o objetivo de avaliar praticamente cada mód
 ![teste_DHT11](public/img/osciloscopio.jpeg)
 
 Ao final, foi realizado um teste completo do projeto em conjunto para validar se as respostas estavam de acordo com as expectativas iniciais. Essa validação foi feita através do código C, que foi elaborado especificamente para receber e enviar dados pela UART via porta serial. 
+
+Como resultado final, o projeto utilizou cerca de 770 LEs (Logical Elements) da FPGA Cyclone IV, isto é, usou menos de 1/6 das LEs disponíveis. Além disso, foram utilizados 35 pinos de entrada e saída da placa, sendo que 32 destes pinos foram alocados para os sensores de temperatura e umidade. Abaixo seguem as imagens que correspondem a contagem de pinos, LEs usadas e a pinagem na placa Cyclone IV.
+
+![LE](public/img/LEs.jpeg)
+
+![pinagem](public/img/pinagem.jpeg)
 
 ## Conclusão
 
