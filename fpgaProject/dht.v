@@ -1,10 +1,10 @@
 module dht(
-	input clk, 							//clk de 1 microssegundo
-	inout [31:0]dht_data, 			//pino de data do dht11
-	input start_bit, 					//sinal de start para a máquina começar
+	input clk, 				//clk de 1 microssegundo
+	inout [31:0]dht_data, 			//pino de data dos 32 dht11
+	input start_bit, 			//sinal de start para a máquina começar
 	input [4:0]sensorIndex, 		//índice identificando qual sensor será requisitado
 	output reg errorSensor, 		//pino de identificação de erro
-	output reg done,                //reg de 1 bit para indicação de conclusão
+	output reg done,                	//reg de 1 bit para indicação de conclusão
 	output [7:0]hum_int, 			//parte inteira da humidade
 	output [7:0]hum_float, 			//parte float da humidade
 	output [7:0]temp_int, 			//parte inteira da temperatura
@@ -13,15 +13,13 @@ module dht(
 	);
 	
 	reg [31:0]direction; 			//registrador de 1 bit da direção do pino de data 
-	reg [14:0]counter; 				//contador de 1 em 1 microssegundo
-	reg [5:0]index; 					//registrador de index
+	reg [14:0]counter; 			//contador de 1 em 1 microssegundo
+	reg [5:0]index; 			//registrador de index para contagem dos bits
 	reg [39:0]temp_data; 			//registrador temporário de 40 bits
-	reg [31:0]send; 					//registrador de 1 bit que manda sinal da fpga para o dht11
-	wire [31:0]read; 					//leitura do dht11
-	reg error; 							// Erro que aconteceu durante o procedimento
-	
-	//triState tris0(dht_data, direction, send, read);
-	
+	reg [31:0]send; 			//registrador de 1 bit que manda sinal da fpga para o dht11
+	wire [31:0]read; 			//leitura do dht11
+	reg error; 				// Erro que aconteceu durante o procedimento
+
 	//tristates que alternam os 32 dht_data de input para output
 	triState tris0(dht_data[0], direction[0], send[0], read[0]);
 	triState tris1(dht_data[1], direction[1], send[1], read[1]);
@@ -62,7 +60,7 @@ module dht(
 	parameter IDLE=0, START=1, DETECT_SIGNAL=2, WAIT_DHT11=3, DHT11_RESPONSE=4, 
 	DHT11_HIGH_RESPONSE=5, TRANSMIT=6, DETECT_BIT=7, WAIT_SIGNAL=8, STOP = 9;
 	
-	//copia os valores da variávek temporária para a saída
+	//copia os valores da variáveis temporária para a saída
 	assign hum_int[7:0] = temp_data[39:32];
 	assign hum_float[7:0] = temp_data[31:24];
 	assign temp_int[7:0] = temp_data[23:16];
@@ -71,18 +69,18 @@ module dht(
 
 	
 	initial begin
-		send <= 32'hFFFFFFFF;
+		send <= 32'hFFFFFFFF; //envia 1 para o sensor no estado de espera
 		direction <= 32'hFFFFFFFF; //Direção é do FPGA para o sensor
 	end
 	
 	always @(posedge clk) begin
 		
 		case(state)
-			IDLE: begin//Se estado for START
+			IDLE: begin//Se estado for IDLE //0
 				error <= 0;
 				done <= 0;
 				errorSensor <= 0;
-				if (start_bit ==1) begin
+				if (start_bit ==1) begin //sinal de início
 					temp_data = 0; //temp_data resetado
 					index = 0; //index resetado
 					send[sensorIndex] <= 0; //envia 0 para o sensor
@@ -90,7 +88,7 @@ module dht(
 					state <= START;
 				end	
 			end
-			START: begin//Se estado for START
+			START: begin//Se estado for START //1
 				counter <= counter + 1;
 				if(counter == 19000) begin //Quando chegar a 19ms...
 					counter <= 0; //reseta o contador
@@ -110,7 +108,7 @@ module dht(
 			
 			WAIT_DHT11: begin//Se estado for WAIT_DHT11  // 3
 				counter <= counter + 1;
-				if(counter == 21 || read[sensorIndex] == 0) begin //Enquanto não der 40 ou 41us...
+				if(counter == 21 || read[sensorIndex] == 0) begin //Enquanto não der 20 ou 21us...
 					counter <= 0; //reseta o contador
 					direction[sensorIndex] <= 0; //agora o dht11 que manda sinal para a FPGA
 					state <= DHT11_RESPONSE; //próximo estado
@@ -119,11 +117,11 @@ module dht(
 			
 			DHT11_RESPONSE:  begin//Se estado for DHT11_RESPONSE // 4
 				counter <= counter + 1;
-				if(read[sensorIndex] == 1 || counter == 100) begin //enquanto o sinal for 0 e contagem durar até 80 us...
+				if(read[sensorIndex] == 1 || counter == 100) begin //enquanto o sinal for 0 e contagem durar até 100 us...
 					counter <= 0;
 					if(read[sensorIndex] == 0) begin //caso passado o tempo e o dht11 manteve o 0 de sinal, deu erro
 						error <= 1;
-						state <= WAIT_SIGNAL; //estado de STOP
+						state <= WAIT_SIGNAL; //estado de WAIT_SIGNAL
 					end else begin //caso passado o tempo ou dht11 mudou o sinal para 1
 						state <= DHT11_HIGH_RESPONSE; //próximo estado
 					end
@@ -136,7 +134,7 @@ module dht(
 					if(read[sensorIndex] == 1) begin //caso passado o tempo e o dht11 manteve o 1 de sinal, deu erro
 						counter <= 0;
 						error <= 1;
-						state <= WAIT_SIGNAL; //estado de STOP
+						state <= WAIT_SIGNAL; //estado de WAIT_SIGNAL
 					end else begin //caso passado o tempo ou dht11 mudou o sinal para 0 ******
 						counter <= 0;
 						state <= TRANSMIT; //próximo estado
@@ -147,11 +145,11 @@ module dht(
 			TRANSMIT: begin//Se estado for TRANSMIT (começa transmissão dos bits) // 6
 				if(index < 40) begin //enquanto index for menor que 40
 					counter <= counter + 1;
-					if(read[sensorIndex] == 1 || counter == 70) begin //enquanto o sinal for 0 e contagem durar até 50 us...
+					if(read[sensorIndex] == 1 || counter == 70) begin //enquanto o sinal for 0 e contagem durar até 70 us...
 						counter <= 0;
 						if(read[sensorIndex] == 0) begin //caso passado o tempo e o dht11 manteve o 0 de sinal, deu erro
 							error <= 1;
-							state <= WAIT_SIGNAL; //estado de STOP
+							state <= WAIT_SIGNAL; //estado de WAIT_SIGNAL
 						end else begin //caso passado o tempo ou dht11 mudou o sinal para 1
 							state <= DETECT_BIT; //próximo estado
 						end
@@ -162,13 +160,13 @@ module dht(
 			end
 			
 			DETECT_BIT: begin//Se estado for DETECT_BIT (detecção se o bit é 0 ou 1) // 7
-				if(read[sensorIndex] == 1 && counter < 100) begin //enquanto a leitura do sinal for 1
+				if(read[sensorIndex] == 1 && counter < 100) begin //enquanto a leitura do sinal for 1 e menor que 100
 					counter <= counter + 1;
 				end else begin
-					if (counter > 99) begin
+					if (counter > 99) begin //se contagem chegou a 100, erro
 						error <= 1;
 						state <= WAIT_SIGNAL;
-					end else if(counter > 50) begin //se a contagem do tempo extrapolou 50us(Meio a meio do limite 30 ~ 70us) 
+					end else if(counter > 50) begin //se a contagem do tempo extrapolou 50us (Meio a meio do limite 30 ~ 70us) 
 						temp_data[39-index] <= 1; //bit 1
 						state <= TRANSMIT; //volta para transmit
 						index <= index + 1; //incrementa em 1 o index
