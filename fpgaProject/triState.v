@@ -1,8 +1,8 @@
 module triState(
-	inout port, 
-	input direction,
-	input send,
-	output read
+	inout port,		//pino FPGA que se comunica com o sensor
+	input direction,	//direção
+	input send,		//sinal enviado da FPGA para o sensor
+	output read		//sinal lido pela FPGA que vem do sensor
 	);
 	
 	//Se direcao = 1, então porta vai atuar como saida
