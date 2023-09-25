@@ -1,12 +1,12 @@
 module top(serial_in, clk, serial_out, dht_data);
 
 input serial_in;     				// uart rx
-input clk;								// clk 50Mhz
+input clk;								  // clk 50Mhz
 inout [31:0]dht_data;				// 32 sensores
 output serial_out;					// uart tx
 
-wire baud_rate;						// 9600 bps
-wire microSec;
+wire baud_rate;						  // 9600 bps
+wire microSec;              // 1 Mhz
 
 baudRateGenerator(
 .clk(clk), 
