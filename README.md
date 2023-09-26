@@ -12,7 +12,7 @@ O DHT11 é um sensor de umidade e temperatura que se tornou bastante popular dev
 
 A FPGA Cyclone IV modelo EP4CE6E22C8 representa uma importante inovação no campo da eletrônica digital. Pertencente à renomada família de FPGAs Cyclone IV da Altera, esse dispositivo oferece uma plataforma versátil e poderosa para o desenvolvimento e implementação de sistemas digitais complexos. A sigla "EP4CE6E22C8" denota suas características e capacidades específicas. Esta FPGA possui uma matriz de portas lógicas reconfiguráveis, blocos de memória integrada, PLLs (Phase-Locked Loops), e outros recursos essenciais para a implementação de sistemas digitais. O "EP4CE6E22C8" indica o número de elementos lógicos (LEs), a densidade de células lógicas e a velocidade máxima de operação, entre outros aspectos importantes. 
 
-Este projeto resulta em um sistema capaz de receber comandos de requisições do usuário por meio de uma interface com o computador e monitorar o ambiente, fornecendo dados como temperatura e umidade atual. As próximas seções abordaram em mais detalhes as metodologias empregadas, a descrição do projeto, resultados e testes.
+Este projeto resulta em um sistema capaz de receber comandos de requisições do usuário por meio de uma interface com o computador e monitorar o ambiente, fornecendo dados como temperatura e umidade atual. As próximas seções abordarão em mais detalhes as metodologias empregadas, a descrição do projeto, resultados e testes.
 
 ## Metodologia
 
