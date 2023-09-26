@@ -126,7 +126,7 @@ Os comandos recebidos são lidos e interpretados, seguindo a seguinte tabela:
 ![DHT11](public/img/dht11_final.jpg)
 
   ### STEPPER
-   ![Diagrama Stepper](https://github.com/juserrrrr/DigitalSensorQuery/blob/main/public/img/stepper.png)
+   ![Diagrama Stepper](https://github.com/juserrrrr/DigitalSensorQuery/blob/main/public/img/stepper1.png)
 
    O módulo Stepper serve para escalonar as requisições que vêm do computador com as requisições contínuas dos 32 sensores. Existem 5 estados na máquina, sendo eles:
 
